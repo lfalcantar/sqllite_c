@@ -11,6 +11,11 @@
 
 #include <stdio.h>
 #include <stddef.h>
+#include "Enumerations.h"
+
+struct Statement_t {
+    StatementType type;
+}; typedef struct Statement_t Statement;
 
 struct InputBuffer_t {
     char* buffer;
