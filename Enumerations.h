@@ -11,6 +11,11 @@
 
 #include <stdio.h>
 
+enum ExecuteResult_t {
+    EXECUTE_SUCESS,
+    EXECUTE_TABLE_FULL
+}; typedef enum  ExecuteResult_t ExecuteResult;
+
 enum MetaCommandResult_t
 {
     META_COMMAND_SUCCESS,
@@ -20,6 +25,7 @@ enum MetaCommandResult_t
 enum PrepareResult_t
 {
     PREPARE_SUCCESS,
+    PREPARE_SYNTAX_ERROR,
     PREPARE_UNRECOGNIZED_STATEMENT
 }; typedef enum PrepareResult_t PrepareResult;
 

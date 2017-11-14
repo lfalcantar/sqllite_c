@@ -14,9 +14,11 @@
 #include "Enumerations.h"
 #include "ExecuteCommands.h"
 #include "ExecuteStatements.h"
+#include "PageContainer.h"
 
 int main(int argc, const char * argv[])
 {
+    Table* table = new_table();
     InputBuffer* input_buffer = new_input_buffer();
     
     while (1)
@@ -43,13 +45,23 @@ int main(int argc, const char * argv[])
             {
                 case (PREPARE_SUCCESS):
                     break;
+                case (PREPARE_SYNTAX_ERROR):
+                    printf("Syntax error. Could not parse statement.\n");
+                    continue;
                 case (PREPARE_UNRECOGNIZED_STATEMENT):
                     printf("Unrecognized keyword at start of '%s'.\n",input_buffer->buffer);
                     continue;
             }
             
-            execute_statement(&statement);
-            printf("Executed.\n");
+            switch (execute_statement(&statement, table))
+            {
+                case (EXECUTE_SUCESS):
+                    printf("Executed.\n");
+                    break;
+                case (EXECUTE_TABLE_FULL):
+                    printf("Error: Table full.\n");
+                    break;
+            }
         }
     }
 }

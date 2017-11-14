@@ -12,9 +12,10 @@
 #include <stdio.h>
 #include "Structures.h"
 #include "Enumerations.h"
+#include "PageContainer.h"
 
 PrepareResult prepare_statement(InputBuffer* input_buffer, Statement* statement);
-void execute_statement(Statement* statement);
+ExecuteResult execute_statement(Statement* statement, Table* table);
 
 
 
